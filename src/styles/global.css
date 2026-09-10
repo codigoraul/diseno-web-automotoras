@@ -97,8 +97,8 @@ p{margin:0 0 1rem}
 .hero-slider .slide{position:absolute;inset:0;opacity:0;transition:opacity .9s ease;pointer-events:none;display:flex;align-items:center}
 .hero-slider .slide.active{opacity:1;pointer-events:auto;position:relative}
 .slide-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center}
-.slide-overlay{position:absolute;inset:0;background:linear-gradient(100deg,rgba(10,37,64,.88) 0%,rgba(10,37,64,.72) 45%,rgba(10,37,64,.35) 100%)}
-.slide-overlay::after{content:"";position:absolute;inset:0;background:radial-gradient(600px 400px at 85% 20%,rgba(0,209,193,.18),transparent 70%)}
+.slide-overlay{position:absolute;inset:0;background:linear-gradient(100deg,rgba(4,14,28,.9) 0%,rgba(6,20,38,.72) 45%,rgba(6,20,38,.35) 100%)}
+.slide-overlay::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.15) 0%,transparent 40%,rgba(0,0,0,.35) 100%)}
 .hero-slider .container{position:relative;z-index:2;padding-top:96px;padding-bottom:104px}
 .slide-inner{max-width:700px}
 .slide.active .slide-inner{animation:rise .8s ease both}
@@ -120,14 +120,33 @@ p{margin:0 0 1rem}
   .hero-buttons .btn{width:100%}
 }
 
+/* Slide con mockup de navegador */
+.slide-mockup{background:linear-gradient(135deg,#071a30 0%,#0a2540 55%,#0c3a63 100%)}
+.slide-mockup .slide-overlay{background:radial-gradient(700px 500px at 80% 50%,rgba(0,209,193,.10),transparent 70%)}
+.slide-mockup .slide-overlay::after{display:none}
+.slide-mockup .container{display:grid;grid-template-columns:1.05fr 1fr;gap:48px;align-items:center}
+.slide-mockup .slide-inner{max-width:560px}
+.browser-mockup{background:#fff;border-radius:14px;box-shadow:0 30px 80px rgba(0,0,0,.45);overflow:hidden;border:1px solid rgba(255,255,255,.15);transform:perspective(1200px) rotateY(-6deg);transform-origin:left center}
+.browser-bar{display:flex;align-items:center;gap:6px;background:#eef1f5;padding:9px 12px;border-bottom:1px solid #dde3ea}
+.browser-bar span{width:10px;height:10px;border-radius:50%;background:#cfd6de}
+.browser-bar span:nth-child(1){background:#ff5f57}.browser-bar span:nth-child(2){background:#febc2e}.browser-bar span:nth-child(3){background:#28c840}
+.browser-bar i{font-style:normal;font-size:.72rem;color:#7a8794;background:#fff;border-radius:6px;padding:3px 10px;margin-left:8px;flex:1}
+.browser-mockup img{width:100%;height:auto;display:block}
+@media (max-width:900px){
+  .slide-mockup .container{grid-template-columns:1fr;gap:32px}
+  .browser-mockup{transform:none;max-width:560px}
+}
+@media (max-width:640px){.browser-mockup{display:none}}
+
 /* Grid */
 .grid{display:grid;gap:28px}
 .grid-4{grid-template-columns:repeat(4,1fr)}
+.grid-5{grid-template-columns:repeat(5,1fr)}
 .grid-3{grid-template-columns:repeat(3,1fr)}
 .grid-2{grid-template-columns:repeat(2,1fr)}
-@media (max-width:1000px){.grid-4{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:1000px){.grid-4,.grid-5{grid-template-columns:repeat(2,1fr)}}
 @media (max-width:900px){.grid-3{grid-template-columns:repeat(2,1fr)}}
-@media (max-width:640px){.grid-4,.grid-3,.grid-2{grid-template-columns:1fr}}
+@media (max-width:640px){.grid-5,.grid-4,.grid-3,.grid-2{grid-template-columns:1fr}}
 
 /* Intro */
 .feature-row{display:grid;grid-template-columns:1.05fr 1fr;gap:56px;align-items:center}
@@ -148,7 +167,7 @@ p{margin:0 0 1rem}
 .benefit-card{background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:32px 28px;box-shadow:var(--shadow);height:100%;transition:.25s}
 .benefit-card:hover{transform:translateY(-4px);border-color:rgba(0,209,193,.5)}
 .benefit-card p{font-size:.98rem;line-height:1.65}
-.audience-card{background:var(--bg-light);border:1px solid var(--border);border-radius:var(--radius);padding:30px 24px;height:100%;text-align:center}
+.audience-card{background:var(--bg-light);border:1px solid var(--border);border-radius:var(--radius);padding:28px 18px;height:100%;text-align:center}
 .audience-icon{font-size:2.4rem;color:var(--aqua-2);margin-bottom:14px;display:block}
 .audience-card p{font-size:.95rem}
 

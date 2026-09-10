@@ -15,7 +15,6 @@ const nav = [
   { label: 'Para quién', href: '#para-quien' },
   { label: 'Posicionamiento', href: '#seo' },
   { label: 'Preguntas', href: '#faq' },
-  { label: 'Ver demo', href: DEMO, external: true },
   { label: 'Contacto', href: '#contacto' },
 ];
 ---
@@ -65,7 +64,7 @@ const nav = [
             </li>
           ))}
           <li class="nav-item nav-cta">
-            <a class="btn btn-aqua" href="#contacto">Cotizar mi web</a>
+            <a class="btn btn-aqua" href={DEMO} target="_blank" rel="noopener"><i class="ti ti-external-link"></i> Ver demo</a>
           </li>
         </ul>
       </div>

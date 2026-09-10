@@ -17,18 +17,18 @@ const WHATSAPP = `https://api.whatsapp.com/send?phone=${PHONE_RAW}&text=${encode
   'Hola, vi la página de Diseño Web para Automotoras y quiero cotizar un sitio web para mi automotora:'
 )}`;
 
-const TITLE = 'Diseño Web para Automotoras en Chile | Sitio Web con Catálogo de Vehículos';
+const TITLE = 'Diseño Web para Automotoras y Rent a Car en Chile | Catálogo de Vehículos Online';
 const DESCRIPTION =
-  'Diseño de páginas web para automotoras y venta de vehículos en Chile: catálogo de autos con filtros, fichas por vehículo, cotización por WhatsApp, simulador de financiamiento y SEO local para aparecer en Google. Cotización gratis.';
+  'Diseño de páginas web para automotoras, rent a car y venta de vehículos en Chile: catálogo de autos con filtros, fichas por vehículo, reservas y cotización por WhatsApp, simulador de financiamiento y SEO local para aparecer en Google. Cotización gratis.';
 
 const slides = [
   {
     image: `${BASE}/assets/img/heroes/hero-plataforma-venta-vehiculos.webp`,
     alt: 'Vehículos nuevos exhibidos en el showroom de una automotora',
-    badge: 'Sitios web para automotoras',
+    badge: 'Sitios web para automotoras y rent a car',
     title: 'Diseño Web para',
-    accent: 'Automotoras y Venta de Vehículos',
-    text: 'Creamos la página web de tu automotora con catálogo de autos, filtros por marca, modelo y precio, y contacto directo por WhatsApp. Diseñada para vender vehículos y aparecer en Google.',
+    accent: 'Automotoras, Rent a Car y Venta de Vehículos',
+    text: 'Creamos la página web de tu automotora o rent a car con catálogo de vehículos, filtros por marca, modelo y precio, reservas y contacto directo por WhatsApp. Diseñada para vender o arrendar autos y aparecer en Google.',
     cta: 'Cotizar mi sitio web',
     ctaHref: '#contacto',
     cta2: 'Ver sitio de muestra',
@@ -36,14 +36,19 @@ const slides = [
     cta2External: true,
   },
   {
-    image: `${BASE}/assets/img/heroes/hero-automotora-entrega-llaves.webp`,
-    alt: 'Vendedora de automotora entregando las llaves de un auto a un cliente',
-    badge: 'Más consultas, más ventas',
+    mockup: `${BASE}/assets/img/muestras/panel-administracion-vehiculos.webp`,
+    mockupW: 1328,
+    mockupH: 744,
+    alt: 'Catálogo de vehículos online administrable desde un panel',
+    badge: 'Catálogo de vehículos online',
     title: 'Tu stock de vehículos',
     accent: 'online las 24 horas',
-    text: 'Cada auto con su propia ficha indexable en Google: fotos, kilometraje, año, precio y botón de cotización. Tus clientes eligen desde el celular y te escriben listos para comprar.',
+    text: 'Publica cada auto con fotos, año, precio o tarifa diaria y disponibilidad desde un panel simple. Cada vehículo tiene su propia ficha indexable en Google y botón de cotización o reserva por WhatsApp.',
     cta: 'Quiero mi catálogo online',
     ctaHref: '#contacto',
+    cta2: 'Ver demo',
+    cta2Href: DEMO,
+    cta2External: true,
   },
 ];
 
@@ -73,8 +78,8 @@ const features = [
   },
   {
     icon: 'ti-brand-whatsapp',
-    title: 'Cotización directa por WhatsApp',
-    text: 'Botón de contacto en cada vehículo que abre WhatsApp con el mensaje listo: modelo, año y precio. Menos fricción, más consultas reales.',
+    title: 'Cotización y reservas por WhatsApp',
+    text: 'Botón en cada vehículo que abre WhatsApp con el mensaje listo: modelo, año, precio o fechas de arriendo. Menos fricción, más consultas y reservas reales.',
   },
   {
     icon: 'ti-calculator',
@@ -97,6 +102,7 @@ const audiences = [
   { icon: 'ti-building-store', title: 'Automotoras de autos usados', text: 'Muestra tu stock completo con fotos, precio y financiamiento, y recibe consultas calificadas por WhatsApp.' },
   { icon: 'ti-building-skyscraper', title: 'Concesionarios y seminuevos', text: 'Sitio corporativo con catálogo por marca, servicio técnico, repuestos y formularios de test drive.' },
   { icon: 'ti-file-invoice', title: 'Consignatarias y compraventa', text: 'Formulario de consignación y tasación online para captar vehículos y venderlos desde tu web.' },
+  { icon: 'ti-key', title: 'Rent a car y arriendo de vehículos', text: 'Flota con tarifa diaria, disponibilidad por fechas, requisitos y solicitud de reserva online por WhatsApp o formulario.' },
   { icon: 'ti-truck', title: 'Camionetas, motos y maquinaria', text: 'Catálogos especializados para vehículos comerciales, motos, camiones y maquinaria pesada.' },
 ];
 
@@ -108,7 +114,7 @@ const steps = [
 ];
 
 const seoPoints = [
-  { icon: 'ti-map-pin', title: 'SEO local para tu ciudad', text: 'Optimizamos tu web para búsquedas como "automotora en Temuco" o "autos usados en Santiago", integrada con tu Perfil de Empresa en Google.' },
+  { icon: 'ti-map-pin', title: 'SEO local para tu ciudad', text: 'Optimizamos tu web para búsquedas como "automotora en Temuco", "rent a car en Puerto Montt" o "autos usados en Santiago", integrada con tu Perfil de Empresa en Google.' },
   { icon: 'ti-search', title: 'Una URL por vehículo', text: 'Cada auto publicado es una página indexable con título, descripción y datos estructurados de vehículo (schema.org), para aparecer cuando buscan ese modelo.' },
   { icon: 'ti-gauge', title: 'Velocidad y Core Web Vitals', text: 'Sitio estático ultrarrápido con imágenes optimizadas en WebP. Google premia la velocidad y tus clientes no abandonan por esperar.' },
   { icon: 'ti-device-mobile', title: '100% adaptado a celular', text: 'Más del 80% de quienes buscan un auto lo hacen desde el teléfono. Tu catálogo se ve y funciona perfecto en cualquier pantalla.' },
@@ -126,6 +132,10 @@ const faqs = [
   {
     q: '¿La web sirve para vender autos usados y nuevos?',
     a: 'Sí. El catálogo se adapta a automotoras de usados, concesionarios de vehículos nuevos, seminuevos, consignatarias, rent a car y venta de motos, camionetas o maquinaria. Los filtros y las fichas se configuran según tu tipo de stock.',
+  },
+  {
+    q: '¿Sirve para un rent a car o arriendo de vehículos?',
+    a: 'Sí. Para rent a car configuramos el catálogo como flota: tarifa diaria, categoría (económico, SUV, camioneta, van), requisitos de arriendo y un formulario de reserva con fechas de retiro y devolución que llega a tu WhatsApp o correo. Es ideal para rent a car en ciudades turísticas y aeropuertos.',
   },
   {
     q: '¿Cuánto demora el desarrollo del sitio web?',
@@ -176,12 +186,12 @@ const jsonLd = {
     {
       '@type': 'Service',
       '@id': `${CANONICAL}#service`,
-      name: 'Diseño web para automotoras y venta de vehículos',
-      serviceType: 'Diseño y desarrollo de sitios web para automotoras',
+      name: 'Diseño web para automotoras, rent a car y venta de vehículos',
+      serviceType: 'Diseño y desarrollo de sitios web para automotoras y rent a car',
       description: DESCRIPTION,
       provider: { '@id': 'https://diseñopaginas.cl/#organization' },
       areaServed: { '@type': 'Country', name: 'Chile' },
-      audience: { '@type': 'BusinessAudience', name: 'Automotoras, concesionarios y compraventa de vehículos' },
+      audience: { '@type': 'BusinessAudience', name: 'Automotoras, rent a car, concesionarios y compraventa de vehículos' },
       hasOfferCatalog: {
         '@type': 'OfferCatalog',
         name: 'Funcionalidades del sitio web para automotoras',
@@ -196,7 +206,7 @@ const jsonLd = {
       itemListElement: [
         { '@type': 'ListItem', position: 1, name: 'Inicio', item: 'https://diseñopaginas.cl/' },
         { '@type': 'ListItem', position: 2, name: 'Servicios', item: 'https://diseñopaginas.cl/servicios/' },
-        { '@type': 'ListItem', position: 3, name: 'Diseño Web para Automotoras', item: CANONICAL },
+        { '@type': 'ListItem', position: 3, name: 'Diseño Web para Automotoras y Rent a Car', item: CANONICAL },
       ],
     },
     {
@@ -218,7 +228,7 @@ const jsonLd = {
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>{TITLE}</title>
   <meta name="description" content={DESCRIPTION} />
-  <meta name="keywords" content="diseño web automotoras, página web automotora, sitio web venta de vehículos, catálogo de autos online, plataforma venta de autos usados chile, diseño web concesionarios, web para compraventa de autos" />
+  <meta name="keywords" content="diseño web automotoras, página web automotora, diseño web rent a car, página web arriendo de vehículos, sitio web venta de vehículos, catálogo de autos online, plataforma venta de autos usados chile, diseño web concesionarios, web para compraventa de autos, reservas online rent a car" />
   <meta name="robots" content="index, follow, max-image-preview:large" />
   <link rel="canonical" href={CANONICAL} />
   <meta name="theme-color" content="#0a2540" />
@@ -265,9 +275,9 @@ const jsonLd = {
             cotiza directo por WhatsApp y tú controlas precios, fotos y disponibilidad sin intermediarios.
           </p>
           <p class="section-text">
-            En DiseñoPáginas.cl desarrollamos <strong>plataformas de venta de vehículos</strong> pensadas para el
-            mercado chileno: catálogo con filtros, fichas por auto, simulador de crédito automotriz y
-            posicionamiento SEO local para que te encuentren en tu ciudad.
+            En DiseñoPáginas.cl desarrollamos <strong>plataformas de venta y arriendo de vehículos</strong> pensadas para el
+            mercado chileno: catálogo con filtros, fichas por auto, reservas para <strong>rent a car</strong>, simulador de
+            crédito automotriz y posicionamiento SEO local para que te encuentren en tu ciudad.
           </p>
           <ul class="check-list">
             <li><i class="ti ti-circle-check-filled"></i> Catálogo ilimitado de vehículos administrable por ti</li>
@@ -349,10 +359,10 @@ const jsonLd = {
     <div class="container">
       <div class="section-head">
         <span class="eyebrow">Tipos de negocio</span>
-        <h2>Diseño web para cada tipo de negocio automotriz</h2>
-        <p class="text-muted section-subtitle">Adaptamos el catálogo, los filtros y los formularios a la forma en que vendes</p>
+        <h2>Diseño web para automotoras, rent a car y todo negocio automotriz</h2>
+        <p class="text-muted section-subtitle">Adaptamos el catálogo, los filtros y los formularios a la forma en que vendes o arriendas</p>
       </div>
-      <div class="grid grid-4">
+      <div class="grid grid-5">
         {audiences.map((a) => (
           <article class="audience-card">
             <i class={`ti ${a.icon} audience-icon`}></i>
@@ -425,7 +435,7 @@ const jsonLd = {
     <div class="container">
       <div class="section-head">
         <span class="eyebrow">Dudas frecuentes</span>
-        <h2>Preguntas frecuentes sobre diseño web para automotoras</h2>
+        <h2>Preguntas frecuentes sobre diseño web para automotoras y rent a car</h2>
       </div>
       <Faq items={faqs} />
     </div>
@@ -436,7 +446,7 @@ const jsonLd = {
     <div class="container">
       <div class="contact-panel">
         <div class="text-center mb-3">
-          <h2 class="contact-title">Cotiza el sitio web de tu automotora</h2>
+          <h2 class="contact-title">Cotiza el sitio web de tu automotora o rent a car</h2>
           <p class="text-muted section-subtitle mb-0">Cuéntanos cuántos vehículos manejas y qué necesitas; te enviamos una propuesta sin compromiso</p>
         </div>
         <form class="form-grid" id="contactForm" novalidate>
@@ -447,6 +457,7 @@ const jsonLd = {
           <select name="tipo" required>
             <option value="">¿Qué necesitas?</option>
             <option value="Sitio web con catálogo de vehículos">Sitio web con catálogo de vehículos</option>
+            <option value="Sitio web para rent a car con reservas">Sitio web para rent a car con reservas</option>
             <option value="Landing page para mi automotora">Landing page para mi automotora</option>
             <option value="Rediseño de mi sitio actual">Rediseño de mi sitio actual</option>
             <option value="Web + Google Ads">Web + campañas de Google Ads</option>
@@ -459,7 +470,7 @@ const jsonLd = {
             <option value="50 a 150 vehículos">50 a 150 vehículos</option>
             <option value="Más de 150 vehículos">Más de 150 vehículos</option>
           </select>
-          <textarea class="full" name="mensaje" placeholder="Cuéntanos sobre tu automotora y tu ciudad" rows="5" required></textarea>
+          <textarea class="full" name="mensaje" placeholder="Cuéntanos sobre tu automotora o rent a car y tu ciudad" rows="5" required></textarea>
           <button type="submit" class="btn btn-aqua btn-block full"><i class="ti ti-brand-whatsapp"></i> Enviar por WhatsApp</button>
         </form>
         <p class="form-note">Al enviar se abrirá WhatsApp con tu mensaje listo. También puedes escribirnos a {EMAIL} o llamar al {PHONE_DISPLAY}.</p>

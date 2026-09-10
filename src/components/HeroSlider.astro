@@ -1,7 +1,10 @@
 ---
 // Slider de 2 imágenes con título, subtítulo y CTA. Sin dependencias externas.
 interface Slide {
-  image: string;
+  image?: string;
+  mockup?: string;
+  mockupW?: number;
+  mockupH?: number;
   alt: string;
   badge: string;
   title: string;
@@ -21,17 +24,19 @@ const { slides } = Astro.props;
 
 <section class="hero-slider" aria-roledescription="carrusel" aria-label="Diseño web para automotoras">
   {slides.map((s, i) => (
-    <div class={`slide${i === 0 ? ' active' : ''}`} data-index={i} aria-hidden={i !== 0}>
-      <img
-        class="slide-bg"
-        src={s.image}
-        alt={s.alt}
-        width="1920"
-        height="1080"
-        loading={i === 0 ? 'eager' : 'lazy'}
-        fetchpriority={i === 0 ? 'high' : 'auto'}
-        decoding="async"
-      />
+    <div class={`slide${i === 0 ? ' active' : ''}${s.mockup ? ' slide-mockup' : ''}`} data-index={i} aria-hidden={i !== 0}>
+      {s.image && (
+        <img
+          class="slide-bg"
+          src={s.image}
+          alt={s.alt}
+          width="1920"
+          height="1080"
+          loading={i === 0 ? 'eager' : 'lazy'}
+          fetchpriority={i === 0 ? 'high' : 'auto'}
+          decoding="async"
+        />
+      )}
       <div class="slide-overlay"></div>
       <div class="container">
         <div class="slide-inner">
@@ -52,6 +57,12 @@ const { slides } = Astro.props;
             >{s.cta2External && <i class="ti ti-external-link"></i>}{s.cta2 ?? 'Ver qué incluye'}</a>
           </div>
         </div>
+        {s.mockup && (
+          <div class="browser-mockup" aria-hidden="true">
+            <div class="browser-bar"><span></span><span></span><span></span><i>disenopaginas.cl/automotora</i></div>
+            <img src={s.mockup} alt="" width={s.mockupW} height={s.mockupH} loading="lazy" decoding="async" />
+          </div>
+        )}
       </div>
     </div>
   ))}
