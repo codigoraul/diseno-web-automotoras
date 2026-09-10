@@ -1,0 +1,35 @@
+---
+// Redes sociales de diseñopaginas.cl (mismo orden y enlaces que el sitio principal).
+interface Props {
+  variant?: 'header' | 'footer';
+}
+const { variant = 'header' } = Astro.props;
+
+const WHATSAPP =
+  'https://api.whatsapp.com/send?phone=56961765268&text=Hola,%20vi%20su%20contacto%20desde%20dise%C3%B1opaginas.cl%20y%20necesito%20un%20servicio:';
+
+const links = [
+  { href: 'https://www.facebook.com/PaginasChile/', icon: 'ti-brand-facebook', label: 'Facebook' },
+  { href: 'https://twitter.com/raulriquelme2', icon: 'ti-brand-x', label: 'Twitter' },
+  { href: 'https://www.linkedin.com/in/raul-riquelme-69a16859/', icon: 'ti-brand-linkedin', label: 'LinkedIn' },
+  { href: 'https://www.instagram.com/disenopaginas/', icon: 'ti-brand-instagram', label: 'Instagram' },
+  { href: 'https://www.pinterest.es/boketo11/', icon: 'ti-brand-pinterest', label: 'Pinterest' },
+  { href: 'https://www.behance.net/codigoraul', icon: 'ti-brand-behance', label: 'Behance' },
+  { href: WHATSAPP, icon: 'ti-brand-whatsapp', label: 'WhatsApp' },
+];
+---
+
+<nav class={`social-links social-${variant}`} aria-label="Redes sociales">
+  {links.map((l) => (
+    <a
+      href={l.href}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="social-link"
+      aria-label={`Síguenos en ${l.label}`}
+      title={l.label}
+    >
+      <i class={`ti ${l.icon}`}></i>
+    </a>
+  ))}
+</nav>

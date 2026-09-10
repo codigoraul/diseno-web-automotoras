@@ -1,0 +1,507 @@
+---
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import HeroSlider from '../components/HeroSlider.astro';
+import Faq from '../components/Faq.astro';
+
+const BASE = import.meta.env.BASE_URL.replace(/\/$/, '');
+const CANONICAL = 'https://diseñopaginas.cl/diseno-web-automotoras/';
+const OG_IMAGE = `https://xn--diseopaginas-dhb.cl/diseno-web-automotoras/assets/img/heroes/hero-plataforma-venta-vehiculos.webp`;
+
+const PHONE_RAW = '56961765268';
+const PHONE_DISPLAY = '+56 9 6176 5268';
+const EMAIL = 'codigoraul@gmail.com';
+const DEMO = 'https://disenopaginas.cl/automotora/';
+const WHATSAPP = `https://api.whatsapp.com/send?phone=${PHONE_RAW}&text=${encodeURIComponent(
+  'Hola, vi la página de Diseño Web para Automotoras y quiero cotizar un sitio web para mi automotora:'
+)}`;
+
+const TITLE = 'Diseño Web para Automotoras en Chile | Sitio Web con Catálogo de Vehículos';
+const DESCRIPTION =
+  'Diseño de páginas web para automotoras y venta de vehículos en Chile: catálogo de autos con filtros, fichas por vehículo, cotización por WhatsApp, simulador de financiamiento y SEO local para aparecer en Google. Cotización gratis.';
+
+const slides = [
+  {
+    image: `${BASE}/assets/img/heroes/hero-plataforma-venta-vehiculos.webp`,
+    alt: 'Vehículos nuevos exhibidos en el showroom de una automotora',
+    badge: 'Sitios web para automotoras',
+    title: 'Diseño Web para',
+    accent: 'Automotoras y Venta de Vehículos',
+    text: 'Creamos la página web de tu automotora con catálogo de autos, filtros por marca, modelo y precio, y contacto directo por WhatsApp. Diseñada para vender vehículos y aparecer en Google.',
+    cta: 'Cotizar mi sitio web',
+    ctaHref: '#contacto',
+    cta2: 'Ver sitio de muestra',
+    cta2Href: DEMO,
+    cta2External: true,
+  },
+  {
+    image: `${BASE}/assets/img/heroes/hero-automotora-entrega-llaves.webp`,
+    alt: 'Vendedora de automotora entregando las llaves de un auto a un cliente',
+    badge: 'Más consultas, más ventas',
+    title: 'Tu stock de vehículos',
+    accent: 'online las 24 horas',
+    text: 'Cada auto con su propia ficha indexable en Google: fotos, kilometraje, año, precio y botón de cotización. Tus clientes eligen desde el celular y te escriben listos para comprar.',
+    cta: 'Quiero mi catálogo online',
+    ctaHref: '#contacto',
+  },
+];
+
+// Capturas del sitio de muestra. Para agregar más: copiar el archivo .webp a
+// public/assets/img/muestras/ y añadir una entrada aquí (ancho/alto reales de la imagen).
+const muestras = [
+  {
+    src: `${BASE}/assets/img/muestras/panel-administracion-vehiculos.webp`,
+    alt: 'Panel de administración del sitio web para automotoras: listado de vehículos con año, precio, estado y acciones',
+    w: 1328,
+    h: 744,
+    title: 'Panel de administración de stock',
+    text: 'Agrega, edita o elimina vehículos en segundos. Cada auto con foto, año, precio y estado (nuevo, oferta, vendido).',
+  },
+];
+
+const features = [
+  {
+    icon: 'ti-list-search',
+    title: 'Catálogo de vehículos con filtros',
+    text: 'Buscador por marca, modelo, año, precio, kilometraje, transmisión y combustible. Tus clientes encuentran el auto que buscan en segundos, desde cualquier dispositivo.',
+  },
+  {
+    icon: 'ti-car',
+    title: 'Ficha por vehículo optimizada para SEO',
+    text: 'Cada auto tiene su propia URL con galería de fotos, características técnicas, precio y estado. Google indexa cada ficha y tu automotora aparece cuando buscan ese modelo.',
+  },
+  {
+    icon: 'ti-brand-whatsapp',
+    title: 'Cotización directa por WhatsApp',
+    text: 'Botón de contacto en cada vehículo que abre WhatsApp con el mensaje listo: modelo, año y precio. Menos fricción, más consultas reales.',
+  },
+  {
+    icon: 'ti-calculator',
+    title: 'Simulador de financiamiento',
+    text: 'Calculadora de cuotas con pie y plazo configurable para que el cliente sepa cuánto pagaría al mes antes de escribirte. Aumenta la intención de compra.',
+  },
+  {
+    icon: 'ti-arrows-exchange',
+    title: 'Formulario de tasación y parte de pago',
+    text: 'Recibe solicitudes de tasación de autos usados con fotos y datos del vehículo. Ideal para automotoras que compran, consignan o reciben en parte de pago.',
+  },
+  {
+    icon: 'ti-settings',
+    title: 'Panel para administrar tu stock',
+    text: 'Publica, edita o marca como vendido cada vehículo desde un panel simple, sin depender de nadie. Puedes cargar autos desde el celular en minutos.',
+  },
+];
+
+const audiences = [
+  { icon: 'ti-building-store', title: 'Automotoras de autos usados', text: 'Muestra tu stock completo con fotos, precio y financiamiento, y recibe consultas calificadas por WhatsApp.' },
+  { icon: 'ti-building-skyscraper', title: 'Concesionarios y seminuevos', text: 'Sitio corporativo con catálogo por marca, servicio técnico, repuestos y formularios de test drive.' },
+  { icon: 'ti-file-invoice', title: 'Consignatarias y compraventa', text: 'Formulario de consignación y tasación online para captar vehículos y venderlos desde tu web.' },
+  { icon: 'ti-truck', title: 'Camionetas, motos y maquinaria', text: 'Catálogos especializados para vehículos comerciales, motos, camiones y maquinaria pesada.' },
+];
+
+const steps = [
+  { n: 1, title: 'Reunión y diagnóstico', text: 'Analizamos tu automotora, tu stock, tu competencia en Google y las palabras clave que usan tus clientes para buscar vehículos.' },
+  { n: 2, title: 'Diseño de la web', text: 'Diseñamos una página profesional con la identidad de tu marca, pensada para mostrar autos y convertir visitas en consultas.' },
+  { n: 3, title: 'Catálogo y contenido SEO', text: 'Configuramos el catálogo, cargamos tus primeros vehículos y redactamos textos optimizados para posicionar tu automotora en tu ciudad.' },
+  { n: 4, title: 'Publicación y capacitación', text: 'Publicamos tu sitio, lo conectamos con Google Search Console y Perfil de Empresa, y te enseñamos a administrar tu stock.' },
+];
+
+const seoPoints = [
+  { icon: 'ti-map-pin', title: 'SEO local para tu ciudad', text: 'Optimizamos tu web para búsquedas como "automotora en Temuco" o "autos usados en Santiago", integrada con tu Perfil de Empresa en Google.' },
+  { icon: 'ti-search', title: 'Una URL por vehículo', text: 'Cada auto publicado es una página indexable con título, descripción y datos estructurados de vehículo (schema.org), para aparecer cuando buscan ese modelo.' },
+  { icon: 'ti-gauge', title: 'Velocidad y Core Web Vitals', text: 'Sitio estático ultrarrápido con imágenes optimizadas en WebP. Google premia la velocidad y tus clientes no abandonan por esperar.' },
+  { icon: 'ti-device-mobile', title: '100% adaptado a celular', text: 'Más del 80% de quienes buscan un auto lo hacen desde el teléfono. Tu catálogo se ve y funciona perfecto en cualquier pantalla.' },
+];
+
+const faqs = [
+  {
+    q: '¿Cuánto cuesta una página web para una automotora?',
+    a: 'Depende del tamaño del catálogo, las funcionalidades (simulador de crédito, tasación, panel de administración) y si necesitas integraciones. Cotizamos sin costo según lo que tu automotora necesita; escríbenos por WhatsApp y te enviamos una propuesta clara en menos de 24 horas.',
+  },
+  {
+    q: '¿Puedo subir y editar los vehículos yo mismo?',
+    a: 'Sí. Entregamos un panel de administración simple donde publicas autos con fotos, precio y características, los marcas como vendidos o reservados y actualizas precios en minutos, incluso desde el celular. Te capacitamos al entregar el sitio.',
+  },
+  {
+    q: '¿La web sirve para vender autos usados y nuevos?',
+    a: 'Sí. El catálogo se adapta a automotoras de usados, concesionarios de vehículos nuevos, seminuevos, consignatarias, rent a car y venta de motos, camionetas o maquinaria. Los filtros y las fichas se configuran según tu tipo de stock.',
+  },
+  {
+    q: '¿Cuánto demora el desarrollo del sitio web?',
+    a: 'Una landing page para automotora está lista en 7 a 10 días hábiles. Un sitio completo con catálogo, panel de administración y simulador de financiamiento toma entre 3 y 5 semanas, según la cantidad de vehículos iniciales y el contenido que tengamos disponible.',
+  },
+  {
+    q: '¿Cómo ayuda el sitio a aparecer en Google?',
+    a: 'Cada vehículo tiene su propia página indexable con datos estructurados, redactamos textos con las palabras clave de tu ciudad y tipo de vehículo, optimizamos la velocidad y conectamos el sitio con Google Search Console y tu Perfil de Empresa. Además puedes complementar con campañas de Google Ads para resultados inmediatos.',
+  },
+  {
+    q: '¿Incluye hosting, dominio y mantenimiento?',
+    a: 'Te asesoramos con el dominio .cl y el hosting, y podemos administrarlos por ti. También ofrecemos planes de mantenimiento mensual para actualizaciones, respaldos y soporte, de modo que tu web siempre esté online y segura.',
+  },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'ProfessionalService',
+      '@id': 'https://diseñopaginas.cl/#organization',
+      name: 'DiseñoPáginas.cl',
+      url: 'https://diseñopaginas.cl/',
+      logo: 'https://diseñopaginas.cl/assets/img/logo-disenopaginas.svg',
+      telephone: PHONE_DISPLAY,
+      email: EMAIL,
+      address: { '@type': 'PostalAddress', addressLocality: 'Temuco', addressRegion: 'La Araucanía', addressCountry: 'CL' },
+      areaServed: { '@type': 'Country', name: 'Chile' },
+      sameAs: [
+        'https://www.facebook.com/PaginasChile/',
+        'https://www.instagram.com/disenopaginas/',
+        'https://www.linkedin.com/in/raul-riquelme-69a16859/',
+        'https://twitter.com/raulriquelme2',
+        'https://www.behance.net/codigoraul',
+        'https://www.pinterest.es/boketo11/',
+      ],
+    },
+    {
+      '@type': 'WebPage',
+      '@id': `${CANONICAL}#webpage`,
+      url: CANONICAL,
+      name: TITLE,
+      description: DESCRIPTION,
+      inLanguage: 'es-CL',
+      isPartOf: { '@id': 'https://diseñopaginas.cl/#website' },
+      primaryImageOfPage: OG_IMAGE,
+    },
+    {
+      '@type': 'Service',
+      '@id': `${CANONICAL}#service`,
+      name: 'Diseño web para automotoras y venta de vehículos',
+      serviceType: 'Diseño y desarrollo de sitios web para automotoras',
+      description: DESCRIPTION,
+      provider: { '@id': 'https://diseñopaginas.cl/#organization' },
+      areaServed: { '@type': 'Country', name: 'Chile' },
+      audience: { '@type': 'BusinessAudience', name: 'Automotoras, concesionarios y compraventa de vehículos' },
+      hasOfferCatalog: {
+        '@type': 'OfferCatalog',
+        name: 'Funcionalidades del sitio web para automotoras',
+        itemListElement: features.map((f) => ({
+          '@type': 'Offer',
+          itemOffered: { '@type': 'Service', name: f.title, description: f.text },
+        })),
+      },
+    },
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Inicio', item: 'https://diseñopaginas.cl/' },
+        { '@type': 'ListItem', position: 2, name: 'Servicios', item: 'https://diseñopaginas.cl/servicios/' },
+        { '@type': 'ListItem', position: 3, name: 'Diseño Web para Automotoras', item: CANONICAL },
+      ],
+    },
+    {
+      '@type': 'FAQPage',
+      mainEntity: faqs.map((f) => ({
+        '@type': 'Question',
+        name: f.q,
+        acceptedAnswer: { '@type': 'Answer', text: f.a },
+      })),
+    },
+  ],
+};
+---
+
+<!doctype html>
+<html lang="es-CL">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{TITLE}</title>
+  <meta name="description" content={DESCRIPTION} />
+  <meta name="keywords" content="diseño web automotoras, página web automotora, sitio web venta de vehículos, catálogo de autos online, plataforma venta de autos usados chile, diseño web concesionarios, web para compraventa de autos" />
+  <meta name="robots" content="index, follow, max-image-preview:large" />
+  <link rel="canonical" href={CANONICAL} />
+  <meta name="theme-color" content="#0a2540" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content={TITLE} />
+  <meta property="og:description" content={DESCRIPTION} />
+  <meta property="og:url" content={CANONICAL} />
+  <meta property="og:image" content={OG_IMAGE} />
+  <meta property="og:image:width" content="1920" />
+  <meta property="og:image:height" content="1080" />
+  <meta property="og:locale" content="es_CL" />
+  <meta property="og:site_name" content="DiseñoPaginas.cl" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={TITLE} />
+  <meta name="twitter:description" content={DESCRIPTION} />
+  <meta name="twitter:image" content={OG_IMAGE} />
+
+  <link rel="icon" href={`${BASE}/favicon.svg`} type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Sora:wght@600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.31.0/dist/tabler-icons.min.css" />
+  <link rel="preload" as="image" href={slides[0].image} fetchpriority="high" />
+
+  <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+</head>
+<body>
+  <Header />
+
+  <HeroSlider slides={slides} />
+
+  <!-- Intro -->
+  <section id="intro" class="section">
+    <div class="container">
+      <div class="feature-row">
+        <div>
+          <span class="eyebrow">Página web para automotoras</span>
+          <h2>Tu automotora necesita más que un perfil en portales de autos</h2>
+          <p class="section-text">
+            Publicar en portales de vehículos te da visibilidad, pero compartes la pantalla con tu competencia
+            y pagas por cada aviso. Un <strong>sitio web propio para tu automotora</strong> convierte tu stock en un
+            activo digital que trabaja para ti: tus vehículos aparecen en Google con tu marca, el cliente
+            cotiza directo por WhatsApp y tú controlas precios, fotos y disponibilidad sin intermediarios.
+          </p>
+          <p class="section-text">
+            En DiseñoPáginas.cl desarrollamos <strong>plataformas de venta de vehículos</strong> pensadas para el
+            mercado chileno: catálogo con filtros, fichas por auto, simulador de crédito automotriz y
+            posicionamiento SEO local para que te encuentren en tu ciudad.
+          </p>
+          <ul class="check-list">
+            <li><i class="ti ti-circle-check-filled"></i> Catálogo ilimitado de vehículos administrable por ti</li>
+            <li><i class="ti ti-circle-check-filled"></i> Consultas por WhatsApp con el modelo ya identificado</li>
+            <li><i class="ti ti-circle-check-filled"></i> Optimizado para Google y para celulares</li>
+          </ul>
+          <div class="hero-buttons">
+            <a href="#contacto" class="btn btn-primary btn-lg">Cotizar mi web ahora</a>
+            <a href={DEMO} target="_blank" rel="noopener" class="btn btn-outline-navy btn-lg"><i class="ti ti-external-link"></i> Ver sitio de muestra</a>
+          </div>
+        </div>
+        <div class="feature-media">
+          <img
+            src={`${BASE}/assets/img/servicios/catalogo-digital-automotora.webp`}
+            alt="Vendedora mostrando el catálogo digital de vehículos en una tablet a un cliente"
+            width="1200"
+            height="675"
+            loading="lazy"
+            decoding="async"
+          />
+          <div class="media-badge">
+            <i class="ti ti-trending-up"></i>
+            <div><strong>Stock online 24/7</strong><span>Tus clientes eligen antes de visitarte</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Qué incluye -->
+  <section id="beneficios" class="section bg-light">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">Funcionalidades</span>
+        <h2>Qué incluye el sitio web para tu automotora</h2>
+        <p class="text-muted section-subtitle">Todo lo que necesitas para mostrar, cotizar y vender vehículos desde tu propia página web</p>
+      </div>
+      <div class="grid grid-3">
+        {features.map((f) => (
+          <article class="benefit-card">
+            <div class="icon-tile"><i class={`ti ${f.icon}`}></i></div>
+            <h3 class="h5">{f.title}</h3>
+            <p class="text-muted mb-0">{f.text}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Muestras -->
+  <section id="muestras" class="section">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">Sitio de muestra</span>
+        <h2>Así se ve un sitio web para automotoras hecho por nosotros</h2>
+        <p class="text-muted section-subtitle">Capturas reales de nuestra plataforma demo. Navégala completa y prueba el catálogo y el panel.</p>
+      </div>
+      <div class="muestras-grid">
+        {muestras.map((m) => (
+          <figure class="muestra-card">
+            <a href={DEMO} target="_blank" rel="noopener" class="muestra-img" aria-label={`Ver demo: ${m.title}`}>
+              <img src={m.src} alt={m.alt} width={m.w} height={m.h} loading="lazy" decoding="async" />
+            </a>
+            <figcaption>
+              <h3 class="h5">{m.title}</h3>
+              <p class="text-muted mb-0">{m.text}</p>
+            </figcaption>
+          </figure>
+        ))}
+      </div>
+      <div class="text-center" style="margin-top:36px">
+        <a href={DEMO} target="_blank" rel="noopener" class="btn btn-primary btn-lg"><i class="ti ti-external-link"></i> Ver sitio de muestra completo</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Para quién -->
+  <section id="para-quien" class="section">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">Tipos de negocio</span>
+        <h2>Diseño web para cada tipo de negocio automotriz</h2>
+        <p class="text-muted section-subtitle">Adaptamos el catálogo, los filtros y los formularios a la forma en que vendes</p>
+      </div>
+      <div class="grid grid-4">
+        {audiences.map((a) => (
+          <article class="audience-card">
+            <i class={`ti ${a.icon} audience-icon`}></i>
+            <h3 class="h5">{a.title}</h3>
+            <p class="text-muted mb-0">{a.text}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- SEO -->
+  <section id="seo" class="section seo-section">
+    <div class="container">
+      <div class="section-head light">
+        <span class="eyebrow">Posicionamiento en Google</span>
+        <h2>Que te encuentren cuando buscan un auto en tu ciudad</h2>
+        <p class="section-subtitle">Un sitio bonito no sirve si nadie lo ve. Construimos tu web para posicionar desde el primer día.</p>
+      </div>
+      <div class="grid grid-2 seo-grid">
+        {seoPoints.map((s) => (
+          <div class="seo-item">
+            <div class="seo-icon"><i class={`ti ${s.icon}`}></i></div>
+            <div>
+              <h3 class="h5">{s.title}</h3>
+              <p class="mb-0">{s.text}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+      <div class="seo-cta">
+        <p>¿Necesitas resultados inmediatos mientras el SEO madura? Complementamos con <a href="https://diseñopaginas.cl/google-ads-chile/">campañas de Google Ads para automotoras</a>.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Proceso -->
+  <section id="proceso" class="section bg-light">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">Cómo trabajamos</span>
+        <h2>De la primera reunión a tu web vendiendo autos</h2>
+      </div>
+      <div class="grid grid-4 steps-grid">
+        {steps.map((s) => (
+          <div class="step-card">
+            <span class="step-number">{s.n}</span>
+            <h3 class="h5">{s.title}</h3>
+            <p class="text-muted mb-0">{s.text}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats -->
+  <section class="section-tight stats">
+    <div class="container">
+      <div class="stats-grid">
+        <div><strong>+13</strong><span>años diseñando sitios web en Chile</span></div>
+        <div><strong>24/7</strong><span>tu catálogo disponible para clientes</span></div>
+        <div><strong>100%</strong><span>administrable por ti, sin depender de nadie</span></div>
+        <div><strong>0</strong><span>comisiones por vehículo vendido desde tu web</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq" class="section">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">Dudas frecuentes</span>
+        <h2>Preguntas frecuentes sobre diseño web para automotoras</h2>
+      </div>
+      <Faq items={faqs} />
+    </div>
+  </section>
+
+  <!-- Contacto -->
+  <section id="contacto" class="section bg-light">
+    <div class="container">
+      <div class="contact-panel">
+        <div class="text-center mb-3">
+          <h2 class="contact-title">Cotiza el sitio web de tu automotora</h2>
+          <p class="text-muted section-subtitle mb-0">Cuéntanos cuántos vehículos manejas y qué necesitas; te enviamos una propuesta sin compromiso</p>
+        </div>
+        <form class="form-grid" id="contactForm" novalidate>
+          <input type="text" name="nombre" placeholder="Nombre" required autocomplete="name" />
+          <input type="text" name="empresa" placeholder="Nombre de la automotora" autocomplete="organization" />
+          <input type="tel" name="fono" placeholder="Teléfono / WhatsApp" required autocomplete="tel" />
+          <input type="email" name="email" placeholder="Email" required autocomplete="email" />
+          <select name="tipo" required>
+            <option value="">¿Qué necesitas?</option>
+            <option value="Sitio web con catálogo de vehículos">Sitio web con catálogo de vehículos</option>
+            <option value="Landing page para mi automotora">Landing page para mi automotora</option>
+            <option value="Rediseño de mi sitio actual">Rediseño de mi sitio actual</option>
+            <option value="Web + Google Ads">Web + campañas de Google Ads</option>
+            <option value="No estoy seguro, quiero asesoría">No estoy seguro, quiero asesoría</option>
+          </select>
+          <select name="stock">
+            <option value="">¿Cuántos vehículos manejas?</option>
+            <option value="Menos de 20 vehículos">Menos de 20 vehículos</option>
+            <option value="20 a 50 vehículos">20 a 50 vehículos</option>
+            <option value="50 a 150 vehículos">50 a 150 vehículos</option>
+            <option value="Más de 150 vehículos">Más de 150 vehículos</option>
+          </select>
+          <textarea class="full" name="mensaje" placeholder="Cuéntanos sobre tu automotora y tu ciudad" rows="5" required></textarea>
+          <button type="submit" class="btn btn-aqua btn-block full"><i class="ti ti-brand-whatsapp"></i> Enviar por WhatsApp</button>
+        </form>
+        <p class="form-note">Al enviar se abrirá WhatsApp con tu mensaje listo. También puedes escribirnos a {EMAIL} o llamar al {PHONE_DISPLAY}.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section cta">
+    <div class="container">
+      <h2>¿Listo para vender más vehículos desde tu propia web?</h2>
+      <p class="lead">Cotización gratuita y sin compromiso. Te asesoramos sobre la mejor solución para tu automotora.</p>
+      <div class="cta-buttons">
+        <a href="#contacto" class="btn btn-aqua btn-lg"><i class="ti ti-mail"></i> Cotización Gratuita</a>
+        <a href={WHATSAPP} target="_blank" rel="noopener" class="btn btn-outline btn-lg"><i class="ti ti-brand-whatsapp"></i> {PHONE_DISPLAY}</a>
+      </div>
+    </div>
+  </section>
+
+  <Footer />
+
+  <!-- WhatsApp flotante -->
+  <a href={WHATSAPP} target="_blank" rel="noopener" class="wa-float" aria-label="Escríbenos por WhatsApp">
+    <i class="ti ti-brand-whatsapp"></i>
+  </a>
+
+  <script define:vars={{ PHONE_RAW }}>
+    const form = document.getElementById('contactForm');
+    form?.addEventListener('submit', (e) => {
+      e.preventDefault();
+      if (!form.reportValidity()) return;
+      const d = new FormData(form);
+      const parts = [
+        `Hola, soy ${d.get('nombre')}${d.get('empresa') ? ` de ${d.get('empresa')}` : ''}.`,
+        `Tel: ${d.get('fono')} · Email: ${d.get('email')}.`,
+        `Necesito: ${d.get('tipo')}.`,
+        d.get('stock') ? `Stock: ${d.get('stock')}.` : '',
+        `${d.get('mensaje')}`,
+      ].filter(Boolean);
+      const url = `https://api.whatsapp.com/send?phone=${PHONE_RAW}&text=${encodeURIComponent(parts.join(' '))}`;
+      window.open(url, '_blank', 'noopener');
+    });
+  </script>
+</body>
+</html>

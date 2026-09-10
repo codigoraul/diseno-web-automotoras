@@ -1,0 +1,89 @@
+---
+// Header replicado de diseñopaginas.cl (topbar + navbar) con todos sus links absolutos.
+import SocialLinks from './SocialLinks.astro';
+
+const SITE = 'https://diseñopaginas.cl';
+const BASE = import.meta.env.BASE_URL.replace(/\/$/, '');
+const EMAIL = 'codigoraul@gmail.com';
+const PHONE_DISPLAY = '+56 9 6176 5268';
+
+const DEMO = 'https://disenopaginas.cl/automotora/';
+
+const nav = [
+  { label: 'Inicio', href: `${SITE}/` },
+  { label: 'Qué incluye', href: '#beneficios' },
+  { label: 'Para quién', href: '#para-quien' },
+  { label: 'Posicionamiento', href: '#seo' },
+  { label: 'Preguntas', href: '#faq' },
+  { label: 'Ver demo', href: DEMO, external: true },
+  { label: 'Contacto', href: '#contacto' },
+];
+---
+
+<header class="header-area">
+  <!-- Topbar -->
+  <div class="topbar">
+    <div class="container">
+      <div class="topbar-info">
+        <span><i class="ti ti-mail-filled"></i> {EMAIL}</span>
+        <span><i class="ti ti-map-pin-filled"></i> Santiago, Chile</span>
+        <span><i class="ti ti-phone"></i> {PHONE_DISPLAY}</span>
+      </div>
+      <SocialLinks variant="header" />
+    </div>
+  </div>
+
+  <!-- Navbar -->
+  <nav class="navbar" aria-label="Navegación principal" id="mainNav">
+    <div class="container">
+      <a class="navbar-brand" href={`${SITE}/`}>
+        <img
+          src={`${BASE}/assets/img/logo-disenopaginas.svg`}
+          alt="DiseñoPáginas.cl"
+          width="185"
+          height="62"
+          loading="eager"
+        />
+      </a>
+
+      <button
+        class="navbar-toggler"
+        type="button"
+        aria-controls="disenopaginasNav"
+        aria-expanded="false"
+        aria-label="Abrir menú"
+        id="navToggle"
+      >
+        <i class="ti ti-category"></i>
+      </button>
+
+      <div class="navbar-collapse" id="disenopaginasNav">
+        <ul class="navbar-nav">
+          {nav.map((item) => (
+            <li class="nav-item">
+              <a class="nav-link" href={item.href} target={item.external ? '_blank' : undefined} rel={item.external ? 'noopener' : undefined}>{item.label}</a>
+            </li>
+          ))}
+          <li class="nav-item nav-cta">
+            <a class="btn btn-aqua" href="#contacto">Cotizar mi web</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<script>
+  const toggle = document.getElementById('navToggle');
+  const menu = document.getElementById('disenopaginasNav');
+  toggle?.addEventListener('click', () => {
+    const open = menu?.classList.toggle('show');
+    toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+  menu?.querySelectorAll('a').forEach((a) =>
+    a.addEventListener('click', () => {
+      menu.classList.remove('show');
+      toggle?.setAttribute('aria-expanded', 'false');
+    })
+  );
+</script>

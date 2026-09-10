@@ -1,0 +1,145 @@
+---
+// Footer replicado de diseñopaginas.cl con todos sus links (absolutos) + medios de pago.
+import SocialLinks from './SocialLinks.astro';
+
+const SITE = 'https://diseñopaginas.cl';
+const BASE = import.meta.env.BASE_URL.replace(/\/$/, '');
+const EMAIL = 'codigoraul@gmail.com';
+
+const linksCol1 = [
+  { label: 'Cómo crear tu página web', href: `${SITE}/como-crear-tu-pagina-web/` },
+  { label: 'Diseño Web Pymes', href: `${SITE}/diseno-web-pymes` },
+  { label: 'Web dentistas', href: `${SITE}/diseno-web-clinicas-dentales` },
+  { label: 'Logos y Afiche', href: `${SITE}/servicios/diseno-logotipos` },
+  { label: 'Venta Online', href: `${SITE}/productos-online` },
+  { label: 'Google Ads y Redes', href: `${SITE}/google-ads-chile/` },
+  { label: 'Chatbot con IA', href: `${SITE}/chatbot-ia/` },
+  { label: 'Apps web para tu negocio', href: 'https://aplicacionweb.cl', external: true, dofollow: true },
+  { label: 'Empresas Minería', href: `${SITE}/diseno-web-empresas-mineria` },
+  { label: 'Abogados', href: `${SITE}/diseno-web-abogados` },
+  { label: 'Psicólogos', href: `${SITE}/diseno-web-psicologos/` },
+  { label: 'Veterinaria', href: `${SITE}/veterinarias` },
+  { label: 'Reseñas Google', href: 'https://share.google/t1wPMfp9ovEFisj4V', external: true },
+  { label: 'Web Corredor Propiedades', href: `${SITE}/diseno-web-corredor-propiedades/` },
+  { label: 'Web turismo', href: `${SITE}/diseno-web-turismo` },
+  { label: 'Web Automotoras', href: `${SITE}/diseno-web-automotoras/` },
+  { label: 'Marketers1.com', href: 'https://www.marketers1.com/CL/Temuco/1574128182815302/Dise%C3%B1o-Paginas-Web-Chile', external: true },
+];
+
+const linksCol2 = [
+  { label: 'Antofagasta', href: `${SITE}/antofagasta` },
+  { label: 'La Serena', href: `${SITE}/la-serena` },
+  { label: 'Santiago', href: `${SITE}/santiago` },
+  { label: 'Concepción', href: `${SITE}/concepcion` },
+  { label: 'Temuco', href: `${SITE}/web-temuco` },
+  { label: 'Valdivia', href: `${SITE}/valdivia` },
+  { label: 'Osorno', href: `${SITE}/osorno` },
+  { label: 'Puerto Montt', href: `${SITE}/puerto-montt` },
+  { label: 'Arica', href: `${SITE}/diseno-web-arica.php` },
+  { label: 'Mi Landing Page', href: `${SITE}/landing/`, external: true },
+  { label: 'Web con IA', href: `${SITE}/web-inteligencia-artificial/`, external: true },
+];
+
+const bottomNav = [
+  { label: 'Contacto', href: `${SITE}/contacto/` },
+  { label: 'Servicios', href: `${SITE}/servicios/` },
+  { label: 'Portafolio', href: `${SITE}/portafolio/` },
+  { label: 'Preguntas Frecuentes', href: `${SITE}/servicios/diseno-web-chile#faq` },
+];
+
+const year = new Date().getFullYear();
+---
+
+<footer class="footer-wrapper">
+  <div class="divider"></div>
+  <div class="container">
+    <div class="footer-grid">
+      <!-- Marca -->
+      <div class="footer-card">
+        <a href={`${SITE}/`} class="footer-logo">
+          <img
+            src={`${BASE}/assets/img/logo-disenopaginas-n.png`}
+            alt="DiseñoPáginas.cl"
+            width="185"
+            height="62"
+            loading="lazy"
+          />
+        </a>
+        <p class="mb-0">
+          Somos especialistas en diseño web profesional con más de 13 años de experiencia creando
+          sitios web de alta calidad. Nos comprometemos a encontrar la mejor solución para comunicar
+          de forma rápida, efectiva y con alcance en el tiempo acerca de su empresa o servicios a
+          través de la web. Creamos sitios web modernos, responsivos y optimizados para SEO que
+          impulsan el crecimiento de su negocio.
+        </p>
+      </div>
+
+      <!-- Links relacionados -->
+      <div class="footer-card">
+        <h5>Links relacionados</h5>
+        <div class="footer-links-cols">
+          <ul class="footer-nav">
+            {linksCol1.map((l) => (
+              <li>
+                <a
+                  href={l.href}
+                  target={l.external ? '_blank' : undefined}
+                  rel={l.dofollow ? 'dofollow' : l.external ? 'noopener' : undefined}
+                >{l.label}</a>
+              </li>
+            ))}
+          </ul>
+          <ul class="footer-nav">
+            {linksCol2.map((l) => (
+              <li>
+                <a href={l.href} target={l.external ? '_blank' : undefined} rel={l.external ? 'noopener' : undefined}>{l.label}</a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+
+      <!-- Contacto -->
+      <div class="footer-card">
+        <h5>Información de contacto</h5>
+        <div class="contact-info">
+          <p><i class="ti ti-map-pin"></i>Temuco - Chile</p>
+          <p><i class="ti ti-phone"></i>(+56) 9 61765268</p>
+          <p><i class="ti ti-mail"></i>{EMAIL}</p>
+          <p class="mb-0"><i class="ti ti-clock"></i>Lunes a sábado</p>
+        </div>
+        <h5 class="mt-4">Redes Sociales</h5>
+        <SocialLinks variant="footer" />
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- Copyright -->
+  <div class="copyright-wrapper">
+    <div class="container">
+      <div class="copyright-row">
+        <p class="copyright mb-0">
+          Copyright &copy; <span id="year">{year}</span>
+          <a href={`${SITE}/`}>DiseñoPáginas.cl</a> - Todos los derechos reservados.
+        </p>
+        <div class="footer-bottom-nav">
+          {bottomNav.map((l) => <a href={l.href}>{l.label}</a>)}
+        </div>
+      </div>
+
+      <!-- Medios de pago -->
+      <div class="dp-footer-pagos">
+        <span>Paga en <strong>cuotas con tu tarjeta</strong></span>
+        <span class="dp-iconos" role="list" aria-label="Medios de pago aceptados">
+          <svg viewBox="0 0 46 28" role="listitem" aria-label="Visa"><rect width="46" height="28" rx="4" fill="#fff"></rect><text x="23" y="19" text-anchor="middle" font-family="Helvetica,Arial,sans-serif" font-size="11" font-weight="700" font-style="italic" fill="#1A1F71">VISA</text></svg>
+          <svg viewBox="0 0 46 28" role="listitem" aria-label="Mastercard"><rect width="46" height="28" rx="4" fill="#fff"></rect><circle cx="19" cy="14" r="8" fill="#EB001B"></circle><circle cx="27" cy="14" r="8" fill="#F79E1B"></circle><path d="M23 8.1a8 8 0 0 0 0 11.8 8 8 0 0 0 0-11.8z" fill="#FF5F00"></path></svg>
+          <svg viewBox="0 0 46 28" role="listitem" aria-label="American Express"><rect width="46" height="28" rx="4" fill="#2E77BC"></rect><text x="23" y="13" text-anchor="middle" font-family="Helvetica,Arial,sans-serif" font-size="6" font-weight="700" fill="#fff">AMERICAN</text><text x="23" y="21" text-anchor="middle" font-family="Helvetica,Arial,sans-serif" font-size="6" font-weight="700" fill="#fff">EXPRESS</text></svg>
+          <svg viewBox="0 0 46 28" role="listitem" aria-label="Redcompra"><rect width="46" height="28" rx="4" fill="#fff"></rect><text x="23" y="13" text-anchor="middle" font-family="Helvetica,Arial,sans-serif" font-size="7" font-weight="700" fill="#E30613">RED</text><text x="23" y="22" text-anchor="middle" font-family="Helvetica,Arial,sans-serif" font-size="7" font-weight="700" fill="#333">COMPRA</text></svg>
+        </span>
+        <span>· Procesados por Mercado Pago</span>
+      </div>
+    </div>
+  </div>
+</footer>

@@ -1,0 +1,115 @@
+---
+// Slider de 2 imágenes con título, subtítulo y CTA. Sin dependencias externas.
+interface Slide {
+  image: string;
+  alt: string;
+  badge: string;
+  title: string;
+  accent: string;
+  text: string;
+  cta: string;
+  ctaHref: string;
+  cta2?: string;
+  cta2Href?: string;
+  cta2External?: boolean;
+}
+interface Props {
+  slides: Slide[];
+}
+const { slides } = Astro.props;
+---
+
+<section class="hero-slider" aria-roledescription="carrusel" aria-label="Diseño web para automotoras">
+  {slides.map((s, i) => (
+    <div class={`slide${i === 0 ? ' active' : ''}`} data-index={i} aria-hidden={i !== 0}>
+      <img
+        class="slide-bg"
+        src={s.image}
+        alt={s.alt}
+        width="1920"
+        height="1080"
+        loading={i === 0 ? 'eager' : 'lazy'}
+        fetchpriority={i === 0 ? 'high' : 'auto'}
+        decoding="async"
+      />
+      <div class="slide-overlay"></div>
+      <div class="container">
+        <div class="slide-inner">
+          <span class="hero-badge"><i class="ti ti-car"></i> {s.badge}</span>
+          {i === 0 ? (
+            <h1>{s.title} <span class="accent">{s.accent}</span></h1>
+          ) : (
+            <p class="h1-like">{s.title} <span class="accent">{s.accent}</span></p>
+          )}
+          <p class="lead">{s.text}</p>
+          <div class="hero-buttons">
+            <a href={s.ctaHref} class="btn btn-aqua btn-lg">{s.cta}</a>
+            <a
+              href={s.cta2Href ?? '#beneficios'}
+              class="btn btn-outline btn-lg"
+              target={s.cta2External ? '_blank' : undefined}
+              rel={s.cta2External ? 'noopener' : undefined}
+            >{s.cta2External && <i class="ti ti-external-link"></i>}{s.cta2 ?? 'Ver qué incluye'}</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  ))}
+
+  <button class="slider-arrow prev" type="button" aria-label="Slide anterior"><i class="ti ti-chevron-left"></i></button>
+  <button class="slider-arrow next" type="button" aria-label="Slide siguiente"><i class="ti ti-chevron-right"></i></button>
+
+  <div class="slider-dots" role="tablist">
+    {slides.map((_, i) => (
+      <button type="button" class={`dot${i === 0 ? ' active' : ''}`} data-go={i} role="tab" aria-label={`Ir al slide ${i + 1}`} aria-selected={i === 0}></button>
+    ))}
+  </div>
+</section>
+
+<script>
+  const root = document.querySelector('.hero-slider');
+  if (root) {
+    const slides = Array.from(root.querySelectorAll<HTMLElement>('.slide'));
+    const dots = Array.from(root.querySelectorAll<HTMLButtonElement>('.dot'));
+    let current = 0;
+    let timer: number | undefined;
+
+    const show = (n: number) => {
+      current = (n + slides.length) % slides.length;
+      slides.forEach((s, i) => {
+        s.classList.toggle('active', i === current);
+        s.setAttribute('aria-hidden', i === current ? 'false' : 'true');
+      });
+      dots.forEach((d, i) => {
+        d.classList.toggle('active', i === current);
+        d.setAttribute('aria-selected', i === current ? 'true' : 'false');
+      });
+    };
+
+    const start = () => {
+      stop();
+      timer = window.setInterval(() => show(current + 1), 7000);
+    };
+    const stop = () => {
+      if (timer) window.clearInterval(timer);
+    };
+
+    root.querySelector('.prev')?.addEventListener('click', () => { show(current - 1); start(); });
+    root.querySelector('.next')?.addEventListener('click', () => { show(current + 1); start(); });
+    dots.forEach((d) => d.addEventListener('click', () => { show(Number(d.dataset.go)); start(); }));
+    root.addEventListener('mouseenter', stop);
+    root.addEventListener('mouseleave', start);
+
+    // Swipe táctil
+    let x0: number | null = null;
+    root.addEventListener('touchstart', (e) => { x0 = e.touches[0].clientX; }, { passive: true });
+    root.addEventListener('touchend', (e) => {
+      if (x0 === null) return;
+      const dx = e.changedTouches[0].clientX - x0;
+      if (Math.abs(dx) > 50) { show(dx < 0 ? current + 1 : current - 1); start(); }
+      x0 = null;
+    });
+
+    if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) start();
+  }
+</script>
