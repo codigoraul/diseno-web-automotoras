@@ -3,6 +3,9 @@
 interface Slide {
   image?: string;
   mockup?: string;
+  art?: string;
+  artW?: number;
+  artH?: number;
   mockupW?: number;
   mockupH?: number;
   alt: string;
@@ -24,7 +27,7 @@ const { slides } = Astro.props;
 
 <section class="hero-slider" aria-roledescription="carrusel" aria-label="Diseño web para automotoras">
   {slides.map((s, i) => (
-    <div class={`slide${i === 0 ? ' active' : ''}${s.mockup ? ' slide-mockup' : ''}`} data-index={i} aria-hidden={i !== 0}>
+    <div class={`slide${i === 0 ? ' active' : ''}${s.mockup || s.art ? ' slide-mockup' : ''}`} data-index={i} aria-hidden={i !== 0}>
       {s.image && (
         <img
           class="slide-bg"
@@ -57,6 +60,11 @@ const { slides } = Astro.props;
             >{s.cta2External && <i class="ti ti-external-link"></i>}{s.cta2 ?? 'Ver qué incluye'}</a>
           </div>
         </div>
+        {s.art && (
+          <div class="slide-art">
+            <img src={s.art} alt={s.alt} width={s.artW} height={s.artH} loading="lazy" decoding="async" />
+          </div>
+        )}
         {s.mockup && (
           <div class="browser-mockup" aria-hidden="true">
             <div class="browser-bar"><span></span><span></span><span></span><i>disenopaginas.cl/automotora</i></div>
