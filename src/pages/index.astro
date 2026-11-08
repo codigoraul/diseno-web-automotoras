@@ -23,8 +23,8 @@ const DESCRIPTION =
 
 const slides = [
   {
-    image: `${BASE}/assets/img/heroes/hero-plataforma-venta-vehiculos.webp`,
-    alt: 'Vehículos nuevos exhibidos en el showroom de una automotora',
+    image: `${BASE}/assets/img/heroes/hero-auto-base.webp`,
+    alt: 'SUV azul exhibido sobre una plataforma giratoria con borde rojo, en una automotora',
     badge: 'Sitios web para automotoras y rent a car',
     title: 'Diseño Web para',
     accent: 'Automotoras, Rent a Car y Venta de Vehículos',
@@ -62,6 +62,15 @@ const muestras = [
     h: 744,
     title: 'Panel de administración de stock',
     text: 'Agrega, edita o elimina vehículos en segundos. Cada auto con foto, año, precio y estado (nuevo, oferta, vendido).',
+  },
+  {
+    src: `${BASE}/assets/img/muestras/etchegaray-autos.webp`,
+    alt: 'Sitio web de Etchegaray Autos, automotora de seminuevos y usados en Temuco, con slider, buscador por marca y precio y botón de cotizar',
+    w: 1328,
+    h: 744,
+    title: 'Etchegaray Autos — Temuco',
+    text: 'Sitio web para automotora de seminuevos y usados: catálogo, financiamiento, parte de pago y cotización directa.',
+    href: 'https://etchegarayautos.cl/prueba',
   },
 ];
 
@@ -338,7 +347,7 @@ const jsonLd = {
       <div class="muestras-grid">
         {muestras.map((m) => (
           <figure class="muestra-card">
-            <a href={DEMO} target="_blank" rel="noopener" class="muestra-img" aria-label={`Ver demo: ${m.title}`}>
+            <a href={m.href ?? DEMO} target="_blank" rel="noopener" class="muestra-img" aria-label={`Ver demo: ${m.title}`}>
               <img src={m.src} alt={m.alt} width={m.w} height={m.h} loading="lazy" decoding="async" />
             </a>
             <figcaption>
